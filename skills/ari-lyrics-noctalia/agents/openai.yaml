@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ari Lyrics: Noctalia"
+  short_description: "Сборка, тесты и интеграция с Noctalia и Hyprland"
+  default_prompt: "Используй $ari-lyrics-noctalia для проверки сборки и диагностики интеграции этого проекта с Noctalia и Hyprland."

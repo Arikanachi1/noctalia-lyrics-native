@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ari Lyrics: MPRIS"
+  short_description: "MPRIS, часы воспроизведения и синхронизация LRC"
+  default_prompt: "Используй $ari-lyrics-mpris для диагностики и исправления синхронизации текста с воспроизведением в этом проекте."

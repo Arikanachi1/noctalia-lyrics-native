@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.keystore
+.venv/
+__pycache__/
+build/
+cmake-build-*/
+node_modules/

@@ -1,0 +1,45 @@
+id = "ari/lyrics"
+name = "Ari Lyrics — Native"
+version = "1.7.8"
+plugin_api = 24
+author = "ari"
+license = "MIT"
+icon = "music"
+description = "Слова песни и поиск: C++ / Qt, MPRIS, LRCLIB, MusicBrainz и Lyrics.ovh."
+tags = ["music", "lyrics", "native"]
+
+[[service]]
+id = "backend"
+entry = "service.luau"
+
+[[widget]]
+id = "lyrics"
+entry = "widget.luau"
+
+[[desktop_widget]]
+id = "lock-player"
+entry = "lock-player.luau"
+
+[[panel]]
+id = "panel"
+entry = "panel.luau"
+placement = "floating"
+width = 640
+height = 540
+
+[[panel]]
+id = "player"
+entry = "player.luau"
+placement = "attached"
+position = "top_center"
+open_near_click = false
+width = 560
+height = 376
+
+[[panel]]
+id = "search"
+entry = "search.luau"
+placement = "floating"
+position = "center"
+width = 600
+height = 560
