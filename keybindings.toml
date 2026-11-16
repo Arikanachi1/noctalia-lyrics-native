@@ -1,0 +1,34 @@
+# Горячие клавиши Ari Lyrics для Noctalia.
+# После изменений: python3 tools/keybindings.py --target hyprland-lua --output ~/.config/hypr/config/lyrics-binds.lua
+# Другие окружения: --target niri или --target sway. Подробнее в README.md.
+# Модификаторы: Super, Ctrl, Alt, Shift. Последний элемент — клавиша.
+# enabled = false отключает бинд. command — команда, выполняемая по нажатию.
+
+[bindings.player]
+shortcut = "Super+Alt+Y"
+command = "noctalia msg panel-toggle ari/lyrics:player"
+
+[bindings.lyrics]
+shortcut = "Super+Y"
+command = "noctalia msg panel-toggle ari/lyrics:panel"
+
+[bindings.search]
+shortcut = "Super+Shift+Y"
+command = "noctalia msg panel-toggle ari/lyrics:search"
+
+# Медиа уже назначены в основном конфиге Hyprland, поэтому здесь выключены.
+# При включении удалите старые назначения тех же клавиш из конфига окружения.
+[bindings.play_pause]
+enabled = false
+shortcut = "XF86AudioPlay"
+command = "playerctl --player=YoutubeMusic,firefox,%any play-pause"
+
+[bindings.next]
+enabled = false
+shortcut = "XF86AudioNext"
+command = "playerctl --player=YoutubeMusic,firefox,%any next"
+
+[bindings.previous]
+enabled = false
+shortcut = "XF86AudioPrev"
+command = "playerctl --player=YoutubeMusic,firefox,%any previous"

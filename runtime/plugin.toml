@@ -1,6 +1,6 @@
 id = "ari/lyrics"
 name = "Ari Lyrics — Native"
-version = "1.7.8"
+version = "1.7.9"
 plugin_api = 24
 author = "ari"
 license = "MIT"

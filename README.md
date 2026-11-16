@@ -1,4 +1,4 @@
-# Ari Lyrics — Native 1.7.8
+# Ari Lyrics — Native 1.7.9
 
 ## Скиллы для работы над проектом
 
@@ -69,9 +69,68 @@ Luau адаптирует данные к штатному API24 сервиса 
 - Строки меняются через косинусное затухание без движения базовой линии.
   Кадровые обновления работают только во время перехода.
 
+## Настройка горячих клавиш
+
+Общий файл — [`keybindings.toml`](keybindings.toml) в корне проекта.
+Меняй `shortcut` и `command` у нужного действия; `enabled = false` отключает его.
+Например:
+
+```toml
+[bindings.lyrics]
+shortcut = "Super+Y"
+command = "noctalia msg panel-toggle ari/lyrics:panel"
+```
+
+По умолчанию: Super+Y — текст, Super+Shift+Y — поиск, Super+Alt+Y — плеер.
+Модификаторы: Super, Ctrl, Alt, Shift; последняя часть — keysym (Y, F8, space,
+plus, XF86AudioPlay). Медиа-примеры выключены, чтобы не дублировать системные бинды.
+Команды выполняются в пользовательской сессии с запущенной Noctalia; кнопки мыши
+и кнопки внутри окон по-прежнему описаны в `runtime/*.luau`.
+
+После изменения файла сгенерируй конфиг своего окружения:
+
+**Hyprland Lua** (используется на этой машине):
+
+```sh
+python3 tools/keybindings.py --target hyprland-lua --output ~/.config/hypr/config/lyrics-binds.lua
+hyprctl reload
+```
+
+Один раз подключи `require("config.lyrics-binds")` в `~/.config/hypr/hyprland.lua`.
+Это формат для Lua-конфигурации Hyprland, не для старого `hyprland.conf`.
+
+**Sway**:
+
+```sh
+python3 tools/keybindings.py --target sway --output ~/.config/sway/lyrics-binds.conf
+swaymsg reload
+```
+
+Один раз добавь `include ~/.config/sway/lyrics-binds.conf` в конфиг Sway.
+Для передачи команд через парсер Sway используется `base64` из coreutils;
+это сохраняет запятые, точки с запятой, кавычки и переменные оболочки.
+
+**Niri**:
+
+```sh
+python3 tools/keybindings.py --target niri --output ~/.config/niri/lyrics-binds.kdl
+```
+
+Один раз добавь `include "lyrics-binds.kdl"` на верхнем уровне конфига Niri.
+Генератор использует [стандартные binds и spawn](https://github.com/niri-wm/niri/wiki/Configuration%3A-Key-Bindings)
+и [include](https://github.com/niri-wm/niri/wiki/Configuration%3A-Include).
+
+Запускай команды генерации из корня проекта. Без `--output` результат выводится
+в терминал. Генератор проверяет повторяющиеся сочетания и формат полей перед
+записью, но не знает о конфликтах с другими файлами конфига окружения.
+Изменения TOML применяются после повторной генерации и перезагрузки конфига
+окружения. Установка самого плагина не регистрирует глобальные горячие клавиши.
+Niri и Sway здесь проверяются генерацией; живой запуск проверен только в Hyprland.
+
 ## Поиск текста
 
-Mod+Y — окно текста; Mod+Shift+Y / кнопка поиска — поиск текста внутри плагина.
+При подключённых биндах из `keybindings.toml`: Super+Y — окно текста;
+Super+Shift+Y / кнопка поиска — поиск текста внутри плагина.
 Исходный запрос заполняется названием и исполнителем текущей песни.
 Результаты загружаются из LRCLIB, включая текст и временные метки.
 Сначала показываются совпадения названия, исполнителя и длительности,
